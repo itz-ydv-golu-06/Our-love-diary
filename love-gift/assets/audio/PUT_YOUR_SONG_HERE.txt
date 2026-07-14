@@ -1,8 +1,0 @@
-Drop an MP3 file in this folder (e.g. our-song.mp3), then open
-js/config.js and set:
-
-  audioFile: "our-song.mp3"
-
-The Play button on the song screen will then play your real song
-with a working progress bar. If audioFile is left as null, the
-song screen keeps the fake animated player instead.
