@@ -13,7 +13,7 @@ const CONFIG = {
   lockSubtitle: "Enter the passcode to unlock",
   // Set a real 4-digit code here if you want it to matter.
   // Leave as null to keep the reel-style behavior: wrong once, then unlocks.
-  passcode: null,
+  passcode: 1805,
 
   // ---- Screen 3: Heart jar — "Everything I love about you" ----
   jarHeading: "Everything I love<br>about you",
