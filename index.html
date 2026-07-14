@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital@1&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="phone">
+  <div class="particle-layer" id="particleLayer"></div>
+  <div class="progress" id="progress"></div>
+
+  <!-- SCREEN 1: LOCK -->
+  <div class="screen active" id="s1">
+    <div class="stickers">
+      <span style="top:8%; left:8%; font-size:22px;">⭐</span>
+      <span style="top:14%; right:10%; font-size:18px;">🦋</span>
+      <span style="bottom:22%; left:10%; font-size:20px;">💗</span>
+      <span style="bottom:12%; right:8%; font-size:18px;">✨</span>
+      <span style="top:40%; left:5%; font-size:16px;">🤍</span>
+    </div>
+    <svg class="mascot" viewBox="0 0 200 200"><ellipse cx="100" cy="120" rx="55" ry="65" fill="#F4D06F"/><circle cx="80" cy="95" r="8" fill="#3E2A34"/><circle cx="120" cy="95" r="8" fill="#3E2A34"/><path d="M85 118 Q100 128 115 118" stroke="#3E2A34" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="60" cy="175" rx="14" ry="8" fill="#E8A15C"/><ellipse cx="140" cy="175" rx="14" ry="8" fill="#E8A15C"/></svg>
+    <div class="lock-title" id="lockTitle"></div>
+    <div class="lock-sub" id="lockSub"></div>
+    <div class="dots-row" id="dotsRow">
+      <div class="pc-dot"></div><div class="pc-dot"></div><div class="pc-dot"></div><div class="pc-dot"></div>
+    </div>
+    <div class="try-again-msg" id="tryAgainMsg"></div>
+    <div class="numpad" id="numpad">
+      <button class="num" data-n="1">1</button><button class="num" data-n="2">2</button><button class="num" data-n="3">3</button>
+      <button class="num" data-n="4">4</button><button class="num" data-n="5">5</button><button class="num" data-n="6">6</button>
+      <button class="num" data-n="7">7</button><button class="num" data-n="8">8</button><button class="num" data-n="9">9</button>
+      <button class="num ghost"></button><button class="num" data-n="0">0</button><button class="num" id="delBtn">⌫</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: SURPRISE -->
+  <div class="screen" id="s2">
+    <div class="stickers">
+      <span style="top:6%; left:12%;">🎀</span>
+      <span style="bottom:6%; right:10%;">🦋</span>
+      <span style="top:45%; left:4%;">💖</span>
+      <span style="top:45%; right:4%;">💖</span>
+    </div>
+    <span class="sparkle" style="top:10%; left:15%;">✨</span>
+    <span class="sparkle" style="top:20%; right:12%; animation-delay:0.4s;">✨</span>
+    <span class="sparkle" style="bottom:30%; left:10%; animation-delay:0.8s;">💫</span>
+    <span class="sparkle" style="bottom:20%; right:18%; animation-delay:1.2s;">✨</span>
+    <div class="surprise-title">SURPRISE!</div>
+    <svg class="surprise-mascot" viewBox="0 0 200 200"><ellipse cx="100" cy="120" rx="55" ry="65" fill="#F4D06F"/><path d="M75 90 Q80 78 90 88" stroke="#3E2A34" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M110 88 Q120 78 125 90" stroke="#3E2A34" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="100" cy="112" rx="7" ry="5" fill="#E8A15C"/><ellipse cx="60" cy="175" rx="14" ry="8" fill="#E8A15C"/><ellipse cx="140" cy="175" rx="14" ry="8" fill="#E8A15C"/></svg>
+    <button class="cta-pill" onclick="goTo(3)">Open it 🎁</button>
+  </div>
+
+  <!-- SCREEN 3: HEART JAR -->
+  <div class="screen" id="s3">
+    <div class="stickers">
+      <span style="top:4%; right:8%;">🌸</span>
+      <span style="bottom:16%; left:6%;">🦋</span>
+      <span style="bottom:8%; right:10%;">⭐</span>
+    </div>
+    <div class="jar-heading" id="jarHeading"></div>
+    <div class="jar-sub" id="jarSub"></div>
+    <div class="jar-grid" id="jarGrid"></div>
+    <div class="jar-note" id="jarNote">tap a heart to see why 💕</div>
+  </div>
+
+  <!-- SCREEN 4: SONG -->
+  <div class="screen" id="s4">
+    <div class="stickers">
+      <span style="top:6%; left:10%;">🎵</span>
+      <span style="top:12%; right:8%;">🎶</span>
+      <span style="bottom:10%; left:8%;">💗</span>
+    </div>
+    <div class="album-art" id="albumArt">💿</div>
+    <div class="song-title" id="songTitle"></div>
+    <div class="song-artist" id="songArtist"></div>
+    <div class="lyric-line" id="lyricLine"></div>
+    <div class="player-bar">
+      <div class="track" id="track"><div class="fill" id="fillBar"></div></div>
+      <div class="time-row"><span id="timeCurrent">0:00</span><span id="timeTotal">2:49</span></div>
+    </div>
+    <button class="play-btn" id="playBtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+    <audio id="audioEl" preload="none"></audio>
+  </div>
+
+  <!-- SCREEN 5: MEMORIES -->
+  <div class="screen" id="s5">
+    <div class="stickers">
+      <span style="top:4%; left:8%;">📸</span>
+      <span style="top:6%; right:8%;">🌷</span>
+      <span style="bottom:14%; right:6%;">🦋</span>
+    </div>
+    <div class="mem-heading" id="memHeading"></div>
+    <div class="mem-strip" id="memStrip"></div>
+    <div class="mem-caption" id="memCaption"></div>
+  </div>
+
+  <!-- SCREEN 6: GIFT BOX -->
+  <div class="screen" id="s6">
+    <div class="stickers">
+      <span style="top:5%; left:8%;">✨</span>
+      <span style="top:5%; right:8%;">🎀</span>
+      <span style="bottom:10%; left:6%;">💫</span>
+      <span style="bottom:10%; right:6%;">💫</span>
+    </div>
+    <div class="gift-heading" id="giftHeading"></div>
+    <div class="gift-sub" id="giftSub"></div>
+    <div class="gift-wrap">
+      <div class="heart-outline"></div>
+      <div class="gift-items" id="giftItems"></div>
+      <div class="modal" id="itemModal">
+        <div class="modal-card">
+          <div class="emoji" id="modalEmoji">📼</div>
+          <p id="modalMsg"></p>
+          <button class="modal-close" onclick="closeModal()">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 7: AWARD -->
+  <div class="screen" id="s7">
+    <div class="stickers">
+      <span style="top:8%; left:10%;">🌟</span>
+      <span style="top:10%; right:10%;">🌟</span>
+      <span style="bottom:12%; left:8%;">🎗️</span>
+      <span style="bottom:12%; right:8%;">💐</span>
+    </div>
+    <div class="award-card">
+      <div class="award-title" id="awardTitle"></div>
+      <div class="award-presented" id="awardPresented"></div>
+      <div class="award-name" id="awardName"></div>
+      <div class="award-msg" id="awardMsg"></div>
+      <div class="ribbon">🎗️</div>
+    </div>
+    <button class="replay-btn" onclick="goTo(1)">watch again</button>
+  </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
